@@ -74,14 +74,14 @@ int main() {
                 break;
             }
             case 8:{
-                std::cout << "result of postf. decrement:" << NUM-- << std::endl;
+                std::cout << "result of post. decrement:" << NUM-- << std::endl;
                 break;
             }
             case 9:{
                 if (NUM.get_sign())
                     std::cout << "\nthe number is negative" << std::endl;
                 else
-                    std::cout << "\nthe number is postive" << std::endl;
+                    std::cout << "\nthe number is positive" << std::endl;
                 break;
             }
         }
