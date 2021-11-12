@@ -22,17 +22,21 @@ binary_num::binary_num(long n){
     while (pow(2, j) <= n){
         j++;
     };
+    std::cout << "test1" ;
     size = j + 1;
     bin_num = new char[size];
+    std::cout << "test2" ;
     do{
         bin_num[i] = n % 2;
         n = n / 2;
         i++;
-    } while (n > 0 & i < size);
+    } while (n > 0);
+    std::cout << "test3" ;
     if (negative){
         bin_num[size] = 1;
     }
     else bin_num[size] = 0;
+    std::cout << "test4" ;
 }
 
 binary_num::binary_num(std::string &str){
