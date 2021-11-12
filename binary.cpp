@@ -22,7 +22,7 @@ binary_num::binary_num(long n){
     while (pow(2, j) <= n){
         j++;
     };
-    size = j + 1;
+    size = j;
     bin_num = new char[size];
     do{
         bin_num[i] = (char) n % 2;
@@ -37,6 +37,7 @@ binary_num::binary_num(long n){
     for (int k = 0; k <= size; k++){
         std::cout << (int)bin_num[k];
     }
+    //std::cout << "7= " << (int) bin_num[7] << std::endl;
 }
 
 binary_num::binary_num(std::string &str){
