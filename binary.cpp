@@ -7,7 +7,7 @@ binary_num::~binary_num(){
     delete []bin_num;
 }
 binary_num::binary_num(char* buf, int length) {
-    char* bin_num = new char[length];
+    char* bin_num = new char[length+1];
     memcpy(bin_num, buf, length);
     int i = length;
     while (buf[i] != 1)
@@ -23,7 +23,7 @@ binary_num::binary_num(long n){
         j++;
     };
     size = j;
-    bin_num = new char[size];
+    bin_num = new char[size+1];
     do{
         bin_num[i] = (char) n % 2;
         n = n / 2;
@@ -37,7 +37,7 @@ binary_num::binary_num(long n){
     for (int k = 0; k <= size; k++){
         std::cout << (int)bin_num[k];
     }
-    //std::cout << "7= " << (int) bin_num[7] << std::endl;
+    std::cout << std::endl;
 }
 
 binary_num::binary_num(std::string &str){
@@ -48,7 +48,7 @@ binary_num::binary_num(std::string &str){
 binary_num::binary_num(binary_num &obj){
     delete []this->bin_num;
     size = obj.size;
-    bin_num = new char[size];
+    bin_num = new char[size + 1];
     memcpy(bin_num, obj.bin_num, size);
 };
 
@@ -83,7 +83,7 @@ char* binary_num::get_twos_complement(char* buffer){
     return buffer;
 }
 char* binary_num::get_2compl(){
-    char* buffer = new char[size];
+    char* buffer = new char[size+1];
     return get_twos_complement(buffer);
 }
 char* equalization(char* vect, int s_new, int s_old){
@@ -95,9 +95,9 @@ char* equalization(char* vect, int s_new, int s_old){
 binary_num subtraction(binary_num &obj1, binary_num &obj2){
     int diff = 0, len = 0; //доп в десяток
     char* res;
-    char* summand1 = new char[obj1.size];
+    char* summand1 = new char[obj1.size+1];
     summand1 = obj1.get_twos_complement(summand1);
-    char* summand2 = new char[obj2.size];
+    char* summand2 = new char[obj2.size+1];
     summand2 = obj2.get_twos_complement(summand2);
     if (obj1.size > obj2.size){
         len = obj1.size;
@@ -155,10 +155,10 @@ binary_num binary_num::decrement(){ //операции уменьшения чи
 }
 
 std::ostream& operator<< (std::ostream &out, const binary_num &obj){
-    std::cout << obj.bin_num[obj.size];
-    for (int i = obj.size; i > 0; i--){
-        std::cout << obj.bin_num[i];
+    for (int i = obj.size; i >= 0; i--){
+        out << (int) obj.bin_num[i];
     }
+    out << std::endl;
     return out;
 }
 std::istream& operator>> (std::istream& in, binary_num &obj) {
@@ -168,9 +168,11 @@ std::istream& operator>> (std::istream& in, binary_num &obj) {
     return in;
 }
 binary_num& binary_num::operator= (const binary_num& obj){
-    delete []this->bin_num;
+    if (!bin_num){
+        delete []this->bin_num;
+    }
     this->size = obj.size;
-    bin_num = new char[size];
+    bin_num = new char[size+1];
     memcpy(this->bin_num, obj.bin_num, size);
     return *this;
 }

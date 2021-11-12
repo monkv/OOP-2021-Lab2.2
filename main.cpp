@@ -4,7 +4,7 @@
 
 std::vector<std::string> MENU_MSG = {"0. Quit", "1. Default Initialization", "2. Initialization by long ", "3.Initialization by string",
                                      "4. Initialization of a number of numbers (lol)", "5. Get two’s complement", "6. Subtraction",
-                                     "7. Prefix increment ", "8. Postf decrement", "9. Get a sign of the number"};
+                                     "7. Prefix increment ", "8. Postf decrement", "9. Get a sign of the number", "10. Print"};
 int main() {
     int c = 0, n;
     binary_num NUM;
@@ -84,6 +84,9 @@ int main() {
                     std::cout << "\nthe number is positive" << std::endl;
                 break;
             }
+            case 10:
+                std::cout << NUM;
+                break;
         }
     } while (c);
     return 0;
