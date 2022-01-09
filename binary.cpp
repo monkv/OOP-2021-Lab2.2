@@ -46,7 +46,6 @@ binary_num::binary_num(std::string &str){
 }
 
 binary_num::binary_num(binary_num &obj){
-    delete []this->bin_num;
     size = obj.size;
     bin_num = new char[size + 1];
     memcpy(bin_num, obj.bin_num, size);
@@ -155,7 +154,8 @@ binary_num binary_num::decrement(){ //операции уменьшения чи
 }
 
 std::ostream& operator<< (std::ostream &out, const binary_num &obj){
-    for (int i = obj.size; i >= 0; i--){
+    out << (int)obj.bin_num[obj.size] << std::endl;
+    for (int i = obj.size - 1; i >= 0; i--){
         out << (int) obj.bin_num[i];
     }
     out << std::endl;
@@ -191,4 +191,6 @@ const binary_num binary_num::operator-- (int){ //постфиксный декр
     *this = subtraction(*this, obj);
     return copy;
 }
+
+
 
